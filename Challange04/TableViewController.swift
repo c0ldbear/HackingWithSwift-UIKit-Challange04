@@ -7,10 +7,12 @@
 
 import UIKit
 
-class TableViewController: UITableViewController {
+class TableViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(takePhoto))
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -30,5 +32,11 @@ class TableViewController: UITableViewController {
         navigationController?.pushViewController(detailView, animated: true)
     }
     
+    @objc func takePhoto() {
+        let picker = UIImagePickerController()
+        picker.allowsEditing = true
+        picker.delegate = self
+        present(picker, animated: true)
+    }
 }
 
