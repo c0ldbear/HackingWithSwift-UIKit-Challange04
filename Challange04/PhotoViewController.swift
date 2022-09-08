@@ -13,13 +13,14 @@ class PhotoViewController: UIViewController {
     // TODO: Add positibility to change caption with edit button, up right
     
     var caption: String?
-    var image: UIImage!
+    var imageName: String?
     
     var captionLabel: UILabel!
     
     override func loadView() {
         view = UIView()
         
+        // Caption Label
         captionLabel = UILabel()
         captionLabel.translatesAutoresizingMaskIntoConstraints = false
         captionLabel.font = UIFont.systemFont(ofSize: 36)
@@ -30,10 +31,22 @@ class PhotoViewController: UIViewController {
         }
         view.addSubview(captionLabel)
         
+        // Photo View
+        let photoView = UIImageView()
+        photoView.translatesAutoresizingMaskIntoConstraints = false
+        if let imagePath = imageName {
+            photoView.image = UIImage(contentsOfFile: imagePath)
+        }
+//        photoView.sizeToFit()
+        photoView.sizeThatFits(CGSize(width: 200, height: 200))
+        view.addSubview(photoView)
+        
         // Constraints for label, experiment
         NSLayoutConstraint.activate([
-            captionLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            captionLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+            captionLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            captionLabel.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -50),
+            photoView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            photoView.bottomAnchor.constraint(equalTo: captionLabel.topAnchor, constant: -25),
         ])
     }
     

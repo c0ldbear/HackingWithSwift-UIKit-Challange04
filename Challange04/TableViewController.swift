@@ -23,19 +23,18 @@ class TableViewController: UITableViewController, UIImagePickerControllerDelegat
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "PhotoCell", for: indexPath)
-        if photos.isEmpty {
-            cell.textLabel?.text = "Photo #\(indexPath.row + 1)"
-        } else {
-            let photo = photos[indexPath.row]
-            cell.textLabel?.text = photo.caption
-        }
+        let photo = photos[indexPath.row]
+        cell.textLabel?.text = photo.caption
+        cell.imageView?.image = UIImage(systemName: "camera.circle.fill")
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let detailView = PhotoViewController()
-        let cell = tableView.cellForRow(at: indexPath)
-        detailView.caption = cell?.textLabel?.text
+        let photo = photos[indexPath.row]
+        detailView.caption = photo.caption
+        let path = getDocumentDirectory().appendingPathComponent(photo.imageID)
+        detailView.imageName = path.path
         navigationController?.pushViewController(detailView, animated: true)
     }
     
