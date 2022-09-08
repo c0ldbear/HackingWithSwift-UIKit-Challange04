@@ -11,10 +11,18 @@ class TableViewController: UITableViewController, UIImagePickerControllerDelegat
     
     var photos = [Photo]()
     
+    override func loadView() {
+        super.loadView()
+        
+        loadPhotosFromUserDefaults()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(takePhoto))
+//        loadPhotosFromUserDefaults()
+//        tableView.reloadData()
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -47,3 +55,30 @@ class TableViewController: UITableViewController, UIImagePickerControllerDelegat
     }
 }
 
+// Add methods to save and load photos to and from User Defaults
+extension TableViewController {
+    func savePhotosToUserDefaults() {
+        let jsonEncoder = JSONEncoder()
+        if let savedData = try? jsonEncoder.encode(photos) {
+            let defaults = UserDefaults.standard
+            defaults.set(savedData, forKey: "photos")
+        } else {
+            print("Could not save photos.")
+        }
+    }
+    
+    func loadPhotosFromUserDefaults() {
+        let defaults = UserDefaults.standard
+        print("loading photos?")
+        if let loadedData = defaults.object(forKey: "photos") as? Data {
+            let jsonDecoder = JSONDecoder()
+            
+            do {
+                photos = try jsonDecoder.decode([Photo].self, from: loadedData)
+            } catch {
+                print("Could not load any photos.")
+                print(error)
+            }
+        }
+    }
+}

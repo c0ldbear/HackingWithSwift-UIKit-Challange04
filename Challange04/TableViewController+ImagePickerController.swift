@@ -26,6 +26,7 @@ extension TableViewController {
             let photo = Photo(id: imageId, caption: caption ?? "")
             self?.photos.append(photo)
             self?.tableView.reloadData()
+            self?.savePhotosToUserDefaults()
         })
         
         dismiss(animated: true)

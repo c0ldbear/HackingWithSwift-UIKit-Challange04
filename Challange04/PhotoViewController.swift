@@ -37,8 +37,7 @@ class PhotoViewController: UIViewController {
         if let imagePath = imageName {
             photoView.image = UIImage(contentsOfFile: imagePath)
         }
-//        photoView.sizeToFit()
-        photoView.sizeThatFits(CGSize(width: 200, height: 200))
+        photoView.sizeThatFits(CGSize(width: 100, height: 100))
         view.addSubview(photoView)
         
         // Constraints for label, experiment
@@ -53,5 +52,6 @@ class PhotoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationItem.largeTitleDisplayMode = .never // Added so that the title in detail view is small
     }
 }

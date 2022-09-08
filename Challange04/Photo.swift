@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class Photo {
+class Photo: Codable {
     var imageID: String
     var caption: String
     
