@@ -23,5 +23,12 @@ class TableViewController: UITableViewController {
         return cell
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let detailView = PhotoViewController()
+        let cell = tableView.cellForRow(at: indexPath)
+        detailView.caption = cell?.textLabel?.text
+        navigationController?.pushViewController(detailView, animated: true)
+    }
+    
 }
 

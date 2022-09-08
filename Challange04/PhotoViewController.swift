@@ -9,8 +9,31 @@ import Foundation
 import UIKit
 
 class PhotoViewController: UIViewController {
-    var caption: String = ""
+    
+    var caption: String?
     var image: UIImage!
+    
+    var captionLabel: UILabel!
+    
+    override func loadView() {
+        view = UIView()
+        
+        captionLabel = UILabel()
+        captionLabel.translatesAutoresizingMaskIntoConstraints = false
+        captionLabel.font = UIFont.systemFont(ofSize: 36)
+        if let caption = caption {
+            captionLabel.text = caption
+        } else {
+            captionLabel.text = "Error!"
+        }
+        view.addSubview(captionLabel)
+        
+        // Constraints for label, experiment
+        NSLayoutConstraint.activate([
+            captionLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            captionLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+        ])
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
