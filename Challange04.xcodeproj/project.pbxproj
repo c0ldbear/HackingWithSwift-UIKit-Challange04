@@ -13,6 +13,7 @@
 		9F383B5528C9FE760059090D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F383B5328C9FE760059090D /* Main.storyboard */; };
 		9F383B5728C9FE790059090D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F383B5628C9FE790059090D /* Assets.xcassets */; };
 		9F383B5A28C9FE790059090D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F383B5828C9FE790059090D /* LaunchScreen.storyboard */; };
+		9F383B6228CA046C0059090D /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F383B6128CA046C0059090D /* PhotoViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		9F383B5628C9FE790059090D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9F383B5928C9FE790059090D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9F383B5B28C9FE790059090D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9F383B6128CA046C0059090D /* PhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +61,7 @@
 				9F383B4D28C9FE760059090D /* AppDelegate.swift */,
 				9F383B4F28C9FE760059090D /* SceneDelegate.swift */,
 				9F383B5128C9FE760059090D /* TableViewController.swift */,
+				9F383B6128CA046C0059090D /* PhotoViewController.swift */,
 				9F383B5328C9FE760059090D /* Main.storyboard */,
 				9F383B5628C9FE790059090D /* Assets.xcassets */,
 				9F383B5828C9FE790059090D /* LaunchScreen.storyboard */,
@@ -139,6 +142,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9F383B5228C9FE760059090D /* TableViewController.swift in Sources */,
+				9F383B6228CA046C0059090D /* PhotoViewController.swift in Sources */,
 				9F383B4E28C9FE760059090D /* AppDelegate.swift in Sources */,
 				9F383B5028C9FE760059090D /* SceneDelegate.swift in Sources */,
 			);
