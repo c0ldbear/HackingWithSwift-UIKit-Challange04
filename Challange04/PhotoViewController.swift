@@ -10,6 +10,8 @@ import UIKit
 
 class PhotoViewController: UIViewController {
     
+    // TODO: Add positibility to change caption with edit button, up right
+    
     var caption: String?
     var image: UIImage!
     

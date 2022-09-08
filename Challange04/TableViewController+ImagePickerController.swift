@@ -12,18 +12,25 @@ extension TableViewController {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         guard let image = info[.editedImage] as? UIImage else { return }
         
-//        let imageName = UUID().uuidString
-//        let imagePath = getDocumentDirectory().appendingPathComponent(imageName)
-//
-//        if let jpegData = image.jpegData(compressionQuality: 0.8) {
-//            try? jpegData.write(to: imagePath)
-//        }
-//
-//        let person = Person(name: "Unknown", image: imageName)
-//        people.append(person)
-//        collectionView.reloadData()
+        let imageId = UUID().uuidString
+        let imagePath = getDocumentDirectory().appendingPathComponent(imageId)
+
+        if let jpegData = image.jpegData(compressionQuality: 0.8) {
+            try? jpegData.write(to: imagePath)
+        }
+        
+        let ac = UIAlertController(title: "Photo caption", message: "", preferredStyle: .alert)
+        ac.addTextField()
+        ac.addAction(UIAlertAction(title: "Add", style: .default) { [weak self, weak ac] _ in
+            let caption = ac?.textFields?[0].text
+            let photo = Photo(id: imageId, caption: caption ?? "")
+            self?.photos.append(photo)
+            self?.tableView.reloadData()
+        })
         
         dismiss(animated: true)
+        
+        present(ac, animated: true)
     }
     
     func getDocumentDirectory() -> URL {

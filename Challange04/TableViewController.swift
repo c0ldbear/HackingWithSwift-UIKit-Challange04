@@ -8,7 +8,9 @@
 import UIKit
 
 class TableViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-
+    
+    var photos = [Photo]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -16,12 +18,17 @@ class TableViewController: UITableViewController, UIImagePickerControllerDelegat
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return photos.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "PhotoCell", for: indexPath)
-        cell.textLabel?.text = "Photo #\(indexPath.row + 1)"
+        if photos.isEmpty {
+            cell.textLabel?.text = "Photo #\(indexPath.row + 1)"
+        } else {
+            let photo = photos[indexPath.row]
+            cell.textLabel?.text = photo.caption
+        }
         return cell
     }
     
@@ -34,6 +41,7 @@ class TableViewController: UITableViewController, UIImagePickerControllerDelegat
     
     @objc func takePhoto() {
         let picker = UIImagePickerController()
+//        picker.sourceType = .camera // uncomment when used on device
         picker.allowsEditing = true
         picker.delegate = self
         present(picker, animated: true)

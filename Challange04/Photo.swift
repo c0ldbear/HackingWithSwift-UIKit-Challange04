@@ -6,3 +6,14 @@
 //
 
 import Foundation
+import UIKit
+
+class Photo {
+    var imageID: String
+    var caption: String
+    
+    init(id: String, caption: String) {
+        self.caption = caption
+        imageID = id
+    }
+}
